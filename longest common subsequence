@@ -15,7 +15,28 @@ class Solution
                else dp[i][j]= max(dp[i-1][j],dp[i][j-1]); // else choose the max of skipping one chracter in one string and keeping other string same
             }
         }
-        return dp[x][y];
+        return dp[x][y]; // this returns the length of LCS
+        
+        /* To print the sequence,add the following program instead of returning length
+          i=a.length();    //start rightmost bottommost
+         j=b.length();
+         string str="";
+         while(i>0 && j>0)
+         {
+         if(a[i-1]==b[j-1]) {  // if characters are same ,add them to resultant string
+         str=a[i-1]+str;
+         i--;
+         j--;
+         }
+         else {
+         if(dp[i-1][j]>dp[i][j-1])  // else take the maximum of previous row and colu
+         i--;
+         else
+         j--;
+         }
+         }
+         return str; // also change the return type to string
+         */
 }
     
     int lcs(int x, int y, string s1, string s2)
