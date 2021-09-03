@@ -1,0 +1,24 @@
+class Solution
+{
+    public:
+    //Function to find length of shortest common supersequence of two strings.
+    int lcs(string X,string Y,int m,int n){ // this is usual longest common subsequence 
+        int dp[m+1][n+1];
+        for(int i=0;i<=m;i++){
+            for(int j=0;j<=n;j++){
+                if(i==0||j==0) dp[i][j]=0;
+                else if(X[i-1]==Y[j-1]) dp[i][j]=dp[i-1][j-1]+1;
+                else 
+                dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+            }
+        }
+        return dp[m][n];
+    }
+    int shortestCommonSupersequence(string X, string Y, int m, int n)
+    {
+        //code here
+        int res=lcs(X,Y,m,n);
+        int scs=m+n-res;     //this lines means eliminating the longest common subsequence which is repeated two times in overall length of m and n
+        return scs;          //eg:  xycd,abcd  answer is "xyabcd" i.e 6
+    }
+};
